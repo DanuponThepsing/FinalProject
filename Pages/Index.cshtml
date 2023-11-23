@@ -24,7 +24,11 @@
                 <td>
                     @if (item.EmailIsRead.Equals("0")) {
                         <img src="images/yellow.gif" height="10pt"> 
-                    } 
+                    }
+                    @if (item.EmailIsRead.Equals("1"))
+                    {
+                        <img src="images/green.png" height="10pt">
+                    }
                     <a href="ReadEmail?emailid=@item.EmailID">@item.EmailSubject</a></td>
                 <td>@item.EmailDate</td>
                 <td>

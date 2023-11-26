@@ -1,0 +1,58 @@
+﻿@page
+@model FinalProject.Pages.ComposeMailModel
+@using FinalProject.Pages
+@{
+}
+
+<br />
+<h2>Compose Email</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">To:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="EmailReceiver" value="@Model.emailInfo.EmailReceiver">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Subject:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="EmailSubject" value="@Model.emailInfo.EmailSubject">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Message:</label>
+        <div class="col-sm-6">
+            <textarea class="form-control" name="EmailMessage" rows="8">@Model.emailInfo.EmailMessage</textarea>
+        </div>
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Index" role="button">Home</a>
+        </div>
+    </div>
+</form>

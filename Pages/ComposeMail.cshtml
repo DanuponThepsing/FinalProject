@@ -1,53 +1,57 @@
 ﻿@page
 @model FinalProject.Pages.ComposeMailModel
+@using FinalProject.Pages
+@{
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compose Email</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-</head>
-<body>
-    <div class="container mt-4">
-        <h1>Compose Email</h1>
+<br />
+<h2>Compose Email</h2>
 
-        @if (!string.IsNullOrEmpty(Model.errorMessage))
-        {
-            <div class="alert alert-danger">@Model.errorMessage</div>
-        }
+@if (Model.errorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+}
+<form method="post">
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">To:</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="EmailReceiver" value="@Model.emailInfo.EmailReceiver">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Subject:</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="EmailSubject" value="@Model.emailInfo.EmailSubject">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Message:</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="EmailMessage" value="@Model.emailInfo.EmailMessage">
+		</div>
 
-        @if (!string.IsNullOrEmpty(Model.successMessage))
-        {
-            <div class="alert alert-success">@Model.successMessage</div>
-        }
+	@if (Model.successMessage.Length > 0)
+	{
+		<div class="row mb-3">
+			<div class="col-sm-3">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>@Model.successMessage</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	}
 
-        <form method="post">
-            <div class="form-group">
-                <label for="EmailReceiver">To:</label>
-                <input type="email" class="form-control" id="EmailReceiver" name="EmailReceiver" required />
-            </div>
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Sent</button>
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a class="btn btn-outline-primary" href="/Index" role="button">Home</a>
+		</div>
+	</div>
 
-            <div class="form-group">
-                <label for="EmailSubject">Subject:</label>
-                <input type="text" class="form-control" id="EmailSubject" name="EmailSubject" required />
-            </div>
-
-            <div class="form-group">
-                <label for="EmailMessage">Body:</label>
-                <textarea class="form-control" id="EmailMessage" name="EmailMessage" rows="4" required></textarea>
-            </div>
-
-            <input type="hidden" id="EmailIsRead" name="EmailIsRead" value="0" />
-            <input type="hidden" id="EmailSender" name="EmailSender" value="your-sender-email@example.com" />
-
-            <button type="submit" class="btn btn-primary">Send Email</button>
-        </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</form>

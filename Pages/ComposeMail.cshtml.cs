@@ -35,16 +35,9 @@ namespace FinalProject.Pages
 
 			try
 			{
-				// Your email sending logic here
-				// Replace the following line with your actual email sending code
 
-				// For testing purposes, let's assume the email is successfully sent
-				successMessage = "Email sent successfully";
-
-				// Save the email to the database
 				SaveEmailToDatabase();
 
-				// Clear the form fields
 				emailInfo.EmailReceiver = "";
 				emailInfo.EmailSubject = "";
 				emailInfo.EmailMessage = "";
@@ -74,11 +67,12 @@ namespace FinalProject.Pages
 
 						command.ExecuteNonQuery();
 					}
-				}
-			}
+                }
+                successMessage = "Email sent successfully";
+            }
 			catch (Exception ex)
 			{
-				errorMessage = "An error occurred while saving the email to the database: " + ex.Message;
+				errorMessage = "Please Login First";
 			}
 		}
 	}

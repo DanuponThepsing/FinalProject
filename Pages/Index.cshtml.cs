@@ -22,7 +22,7 @@ namespace FinalProject.Pages
         {
             try
             {
-                String connectionString = "Server=tcp:bumailsystem.database.windows.net,1433;Initial Catalog=bumailsystem;Persist Security Info=False;User ID=bumailsystem;Password=@bumail1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+                String connectionString = "Server=tcp:buemailsystem.database.windows.net,1433;Initial Catalog=BUEmail;Persist Security Info=False;User ID=bumailsystem;Password=@bumail1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
